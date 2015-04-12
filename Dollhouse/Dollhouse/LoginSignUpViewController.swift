@@ -18,10 +18,28 @@ class LoginSignUpViewController: PFLogInViewController, PFLogInViewControllerDel
         
         self.logInView?.logo = UIImageView(image: UIImage(named: "dollhouse-logo"))
         self.signUpController?.signUpView?.logo = UIImageView(image: UIImage(named: "dollhouse-logo"))
+        
+        if PFUser.currentUser() != nil {
+            showChatOverview()
+        }
+    }
+    
+    func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
+        showChatOverview()
     }
     
     func signUpViewController(signUpController: PFSignUpViewController, didSignUpUser user: PFUser) {
-        signUpController.dismissViewControllerAnimated(true, completion: nil)
+        signUpController.dismissViewControllerAnimated(true, completion: { () -> Void in
+            self.showChatOverview()
+        })
+    }
+    
+    func showChatOverview() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let chatOverview = storyboard.instantiateViewControllerWithIdentifier("chatOverview") as! OverviewTableViewController
+        
+        chatOverview.navigationItem.setHidesBackButton(true, animated: false)
+        navigationController?.pushViewController(chatOverview, animated: true)
     }
    
     override func didReceiveMemoryWarning() {
