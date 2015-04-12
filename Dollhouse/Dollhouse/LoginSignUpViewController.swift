@@ -19,6 +19,9 @@ class LoginSignUpViewController: PFLogInViewController, PFLogInViewControllerDel
         self.logInView?.logo = UIImageView(image: UIImage(named: "dollhouse-logo"))
         self.signUpController?.signUpView?.logo = UIImageView(image: UIImage(named: "dollhouse-logo"))
         
+        self.logInView?.logo?.contentMode = .Center
+        self.signUpController?.signUpView?.logo?.contentMode = UIViewContentMode.Center
+        
         if PFUser.currentUser() != nil {
             showChatOverview()
         }

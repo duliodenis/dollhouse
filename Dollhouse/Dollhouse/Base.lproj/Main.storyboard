@@ -90,15 +90,18 @@
                         <barButtonItem title="Logout" id="ady-1J-ilr"/>
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="choosePartnerBarButtonItem" destination="Ntu-dS-Arj" id="CPG-4s-RMH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUL-zB-4TU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2002" y="429"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Choose Table View Controller-->
         <scene sceneID="aL7-94-Dcz">
             <objects>
-                <tableViewController id="w8Y-7p-Gg1" sceneMemberID="viewController">
+                <tableViewController id="w8Y-7p-Gg1" customClass="ChooseTableViewController" customModule="Dollhouse" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hsd-iS-4fw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,6 +124,9 @@
                             <outlet property="delegate" destination="w8Y-7p-Gg1" id="5KZ-Fs-Tjq"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="FKj-Ey-VAh" id="k80-ti-iSW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puB-hP-sVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
