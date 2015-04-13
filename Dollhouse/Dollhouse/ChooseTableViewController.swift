@@ -53,5 +53,42 @@ class ChooseTableViewController: PFQueryTableViewController, UISearchBarDelegate
         self.loadObjects()
         searchInProgress = false
     }
+    
+    
+    // MARK: Table View Delegate Methods
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if PFUser.currentUser() != nil {
+            var user1 = PFUser.currentUser()
+            var user2 = self.objects?[indexPath.row] as? PFUser
+            
+            var room = PFObject(className: "Room")
+            
+            // Setup the MessageViewController
+            let predicate = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1!, user2!, user2!, user1!)
+            
+            let roomQuery = PFQuery(className: "Room", predicate: predicate)
+
+            roomQuery.findObjectsInBackgroundWithBlock({ (results:[AnyObject]?, error:NSError?) -> Void in
+                if error == nil {
+                    if results!.count > 0 { // room is already existing
+                        room = results!.last as! PFObject
+                        
+                        // Setup MessageViewController and Push to the MessageVC
+                        
+                    } else { // create a new room
+                        room["user1"] = user1
+                        room["user2"] = user2
+                        
+                        room.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+                            if error == nil {
+                                // Setup MessageViewController and push to the MessageVC
+                            }
+                        })
+                    }
+                }
+            })
+        }
+    }
 
 }
