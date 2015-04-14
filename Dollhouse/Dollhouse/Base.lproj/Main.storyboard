@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="You-4t-ADC">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="You-4t-ADC" customClass="OverviewTableViewCell" customModule="Dollhouse" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="You-4t-ADC" id="oiG-DD-Rpu">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -74,6 +74,11 @@
                                         <constraint firstItem="28k-KC-eHD" firstAttribute="top" secondItem="vJL-21-fcr" secondAttribute="bottom" constant="8" id="tc8-Tx-Dpo"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="xdT-fG-5aK" id="Kre-3g-DYb"/>
+                                    <outlet property="lastMessageLabel" destination="28k-KC-eHD" id="VNv-QJ-ZLy"/>
+                                    <outlet property="nameLabel" destination="vJL-21-fcr" id="CEY-cw-pol"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -87,11 +92,16 @@
                                 <segue destination="w8Y-7p-Gg1" kind="show" id="DWL-Jj-GJQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="Logout" id="ady-1J-ilr"/>
+                        <barButtonItem title="Logout" id="ady-1J-ilr">
+                            <connections>
+                                <action selector="logout:" destination="neI-EE-4KG" id="bus-9I-fPb"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="choosePartnerBarButtonItem" destination="Ntu-dS-Arj" id="CPG-4s-RMH"/>
+                        <outlet property="logoutBarButtonItem" destination="ady-1J-ilr" id="e4u-hI-DOp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUL-zB-4TU" userLabel="First Responder" sceneMemberID="firstResponder"/>

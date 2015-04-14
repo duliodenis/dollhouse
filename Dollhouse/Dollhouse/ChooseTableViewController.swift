@@ -33,6 +33,12 @@ class ChooseTableViewController: PFQueryTableViewController, UISearchBarDelegate
     
     override func queryForTable() -> PFQuery {
         let query = PFUser.query()
+        
+        let currentUser = PFUser.currentUser()
+        if query != nil && currentUser != nil {
+            query!.whereKey("objectId", notEqualTo: currentUser!.objectId!);
+        }
+        
         if searchInProgress {
             query?.whereKey("username", containsString: searchString)
         }

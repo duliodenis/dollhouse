@@ -7,17 +7,73 @@
 //
 
 import UIKit
+import Parse
 
 class OverviewTableViewController: UITableViewController {
 
     @IBOutlet weak var choosePartnerBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var logoutBarButtonItem: UIBarButtonItem!
+    
+    var rooms = [PFObject]()
+    var users = [PFUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationItem.setLeftBarButtonItem(logoutBarButtonItem, animated: false)
         self.navigationItem.setRightBarButtonItem(choosePartnerBarButtonItem, animated: false)
     }
 
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if PFUser.currentUser() != nil {
+            loadData()
+        }
+    }
+    
+    
+    func loadData() {
+        rooms = [PFObject]()
+        users = [PFUser]()
+        
+        self.tableView.reloadData()
+        
+        let predicate = NSPredicate(format: "user1 = %@ OR user2 = %@", PFUser.currentUser()!, PFUser.currentUser()!)
+        
+        let roomQuery = PFQuery(className: "Room", predicate: predicate)
+        roomQuery.includeKey("user1")
+        roomQuery.includeKey("user2")
+    
+        roomQuery.findObjectsInBackgroundWithBlock { (results:[AnyObject]?, error:NSError?) -> Void in
+            if error == nil {
+                self.rooms = results as! [PFObject]
+                
+                for room in self.rooms {
+                    let user1 = room.objectForKey("user1") as! PFUser
+                    let user2 = room["user2"] as! PFUser
+                    
+                    if user1.objectId != PFUser.currentUser()?.objectId {
+                        self.users.append(user1)
+                    }
+                    
+                    if user2.objectId != PFUser.currentUser()?.objectId {
+                        self.users.append(user2)
+                    }
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    @IBAction func logout(sender: AnyObject) {
+        PFUser.logOut()
+        
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -28,24 +84,30 @@ class OverviewTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return rooms.count
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
 
-        // Configure the cell...
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
+    }
+    
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! OverviewTableViewCell
+
+        let targetUser = users[indexPath.row]
+        cell.nameLabel.text = targetUser.username
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
