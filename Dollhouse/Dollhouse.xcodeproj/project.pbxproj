@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C26F8071ADEEE7C0096530C /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C26F8061ADEEE7C0096530C /* MessagesViewController.swift */; };
 		6C5AA5E01AD9DB4C0016E264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AA5DF1AD9DB4C0016E264 /* AppDelegate.swift */; };
 		6C5AA5E51AD9DB4C0016E264 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C5AA5E31AD9DB4C0016E264 /* Main.storyboard */; };
 		6C5AA5E71AD9DB4C0016E264 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C5AA5E61AD9DB4C0016E264 /* Images.xcassets */; };
@@ -92,6 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C26F8061ADEEE7C0096530C /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		6C5AA5DA1AD9DB4C0016E264 /* Dollhouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dollhouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5AA5DE1AD9DB4C0016E264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C5AA5DF1AD9DB4C0016E264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				6C5AA6B81AD9FF280016E264 /* OverviewTableViewController.swift */,
 				6C941AC11ADD99ED001678ED /* OverviewTableViewCell.swift */,
 				6CF7ABDD1ADAB9E9000ED87C /* ChooseTableViewController.swift */,
+				6C26F8061ADEEE7C0096530C /* MessagesViewController.swift */,
 				6C5AA5E31AD9DB4C0016E264 /* Main.storyboard */,
 				6C5AA5E61AD9DB4C0016E264 /* Images.xcassets */,
 				6C5AA6221AD9DF7C0016E264 /* Dollhouse-Bridging-Header.h */,
@@ -616,6 +619,7 @@
 				6C5AA6A31AD9EAA80016E264 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				6C5AA69F1AD9EAA80016E264 /* JSQMessagesCollectionView.m in Sources */,
 				6C5AA6AA1AD9EAA80016E264 /* JSQMessagesMediaPlaceholderView.m in Sources */,
+				6C26F8071ADEEE7C0096530C /* MessagesViewController.swift in Sources */,
 				6C5AA68A1AD9EAA80016E264 /* UIImage+JSQMessages.m in Sources */,
 				6C5AA6A71AD9EAA80016E264 /* JSQMessagesLabel.m in Sources */,
 				6C5AA6A61AD9EAA80016E264 /* JSQMessagesInputToolbar.m in Sources */,
