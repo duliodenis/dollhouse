@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class LoginSignUpViewController: PFLogInViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
     
